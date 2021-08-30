@@ -19,7 +19,7 @@ export default class Product extends Component {
     componentWillReceiveProps(nextProps){
         const { product } = nextProps.match.params;
         const item = items.filter(item => item?.name === product);
-        this.setState({ product: item, loading: false })
+        this.setState({ product: item })
 
     }
     render() {

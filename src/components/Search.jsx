@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import "../styles/Search.css"
+import items from "../items.json"
 
 export default class Search extends Component {
     constructor(){
@@ -11,7 +12,11 @@ export default class Search extends Component {
 
     handleChange = (event) => this.setState({inputValue: event.target.value});
     handleSubmit = () =>  {
-        if(this.state.inputValue) this.props.history.push(`/product/${this.state.inputValue.toLowerCase()}`)
+        if(this.state.inputValue) {
+            const item = items.filter( product => product.name.includes(this.state.inputValue));
+            const urlItem = item[0].name;
+            this.props.history.push(`/product/${urlItem}`)
+        }
         if(!this.state.inputValue) this.props.history.push('/')
     };
 
